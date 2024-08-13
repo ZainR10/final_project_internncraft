@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "890634428452",
+    "project_id": "final-project-internncraft",
+    "storage_bucket": "final-project-internncraft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890634428452:android:82e8351351f3d60ae878b1",
+        "android_client_info": {
+          "package_name": "com.example.f"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjQDpSDMfC-MGRr5GPJtzPU1Dw98o6vMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:890634428452:android:05a6152608a27e86e878b1",
+        "android_client_info": {
+          "package_name": "com.example.final_project_internncraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjQDpSDMfC-MGRr5GPJtzPU1Dw98o6vMY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
