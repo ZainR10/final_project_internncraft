@@ -1,4 +1,5 @@
-import 'package:final_project_internncraft/res/components/round_button.dart';
+import 'package:final_project_internncraft/res/components/divider_row.dart';
+import 'package:final_project_internncraft/res/components/simple_button.dart';
 import 'package:final_project_internncraft/utils/general_utils.dart';
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
 import 'package:final_project_internncraft/view_models/auth_models/login_model.dart';
@@ -38,117 +39,113 @@ class _LoginViewState extends State<LoginView> {
     final height = MediaQuery.of(context).size.height * 1;
     final width = MediaQuery.of(context).size.width * 1;
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text('log in screen'),
-        ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      child: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Text(
+                'Welcome Back',
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: height * .03,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
                   children: [
-                    const Text(
-                      'Welcome Back',
-                      style:
-                          TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(
-                      height: height * .03,
-                    ),
-                    Column(
-                      children: [
-                        Form(
-                            key: _formkey,
-                            child: Column(
-                              children: [
-                                TextFormField(
-                                  focusNode: emailFocusNode,
-                                  controller: emailController,
-                                  validator: FormValidation.validateEmail,
-                                  keyboardType: TextInputType.emailAddress,
-                                  decoration: const InputDecoration(
-                                    prefixIcon: Icon(Icons.alternate_email),
-                                    border: OutlineInputBorder(),
-                                    hintText: 'Enter your Email',
-                                    hintStyle: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                  onFieldSubmitted: (value) {
-                                    GeneralUtils.fieldFocusChange(context,
-                                        emailFocusNode, passwordFocusNode);
-                                  },
+                    Form(
+                        key: _formkey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              focusNode: emailFocusNode,
+                              controller: emailController,
+                              validator: FormValidation.validateEmail,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.alternate_email),
+                                border: OutlineInputBorder(),
+                                hintText: 'Enter your Email',
+                                hintStyle: TextStyle(
+                                  fontWeight: FontWeight.normal,
                                 ),
-                                SizedBox(
-                                  height: height * .03,
+                              ),
+                              onFieldSubmitted: (value) {
+                                GeneralUtils.fieldFocusChange(
+                                    context, emailFocusNode, passwordFocusNode);
+                              },
+                            ),
+                            SizedBox(
+                              height: height * .03,
+                            ),
+                            TextFormField(
+                              focusNode: passwordFocusNode,
+                              controller: passwordController,
+                              validator: FormValidation.validatePassword,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.lock_person_rounded),
+                                border: OutlineInputBorder(),
+                                hintText: 'Enter your Password',
+                                hintStyle: TextStyle(
+                                  fontWeight: FontWeight.normal,
                                 ),
-                                TextFormField(
-                                  focusNode: passwordFocusNode,
-                                  controller: passwordController,
-                                  validator: FormValidation.validatePassword,
-                                  keyboardType: TextInputType.emailAddress,
-                                  decoration: const InputDecoration(
-                                    prefixIcon: Icon(Icons.lock_person_rounded),
-                                    border: OutlineInputBorder(),
-                                    hintText: 'Enter your Password',
-                                    hintStyle: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ))
-                      ],
-                    ),
-                    Consumer<LoginViewModel>(
-                      builder: (context, value, child) {
-                        return RoundButton(
-                          color: Colors.indigoAccent.shade100.withOpacity(0.9),
-                          height: height * .08,
-                          width: width * .28,
-                          title: 'Log in',
-                          loading: value.loginLoading,
-                          onPress: () {
-                            if (_formkey.currentState!.validate()) {
-                              value.login(
-                                email: emailController.text.toString(),
-                                password: passwordController.text.toString(),
-                                context: context,
-                              );
-                            }
-                          },
+                              ),
+                            ),
+                          ],
+                        ))
+                  ],
+                ),
+              ),
+              Consumer<LoginViewModel>(
+                builder: (context, value, child) {
+                  return SimpleButton(
+                    textcolor: Colors.white,
+                    textsize: 20,
+                    buttoncolor: Colors.black,
+                    height: height * .08,
+                    width: width * 1,
+                    title: 'Log in',
+                    loading: value.loginLoading,
+                    onPress: () {
+                      if (_formkey.currentState!.validate()) {
+                        value.login(
+                          email: emailController.text.toString(),
+                          password: passwordController.text.toString(),
+                          context: context,
                         );
+                      }
+                    },
+                  );
+                },
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "Don't have an account?",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, RoutesName.signUpView);
                       },
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          "Don't have an account?",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, RoutesName.signUpView);
-                            },
-                            child: const Text(
-                              'Sign up',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600,
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 20),
-                            ))
-                      ],
-                    ),
-                  ]),
-            ),
-          ),
-        ));
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            decoration: TextDecoration.underline,
+                            fontSize: 20),
+                      ))
+                ],
+              ),
+              const DividerRow()
+            ]),
+      ),
+    ));
   }
 }
