@@ -1,16 +1,12 @@
+import 'package:final_project_internncraft/res/components/round_button.dart';
 import 'package:final_project_internncraft/utils/general_utils.dart';
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserProfileView extends StatefulWidget {
-  final String name;
-  final String email;
-  final String photoUrl;
   const UserProfileView({
-    required this.name,
-    required this.email,
-    required this.photoUrl,
     super.key,
   });
 
@@ -26,37 +22,191 @@ class _UserProfileViewState extends State<UserProfileView> {
     final auth = FirebaseAuth.instance;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Home'),
-        actions: [
-          InkWell(
-            onTap: () {
-              auth.signOut().then((value) {
-                Navigator.pushNamed(context, RoutesName.loginView);
-              }).onError((error, stackTrace) {
-                GeneralUtils.snackBar(error.toString(), context);
-              });
-            },
-            child: const Icon(
-              Icons.logout,
-              size: 40,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('profile'),
+          backgroundColor: Colors.amber,
+          actions: [
+            InkWell(
+              onTap: () {
+                auth.signOut().then((value) {
+                  Navigator.pushNamed(context, RoutesName.loginView);
+                }).onError((error, stackTrace) {
+                  GeneralUtils.snackBar(error.toString(), context);
+                });
+              },
+              child: const Icon(
+                Icons.logout,
+                size: 40,
+              ),
             ),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Welcome, ${widget.name}!'),
-            Text(widget.email),
-            widget.photoUrl.isNotEmpty
-                ? Image.network(widget.photoUrl)
-                : const Icon(Icons.account_circle, size: 100),
           ],
         ),
-      ),
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CircleAvatar(
+                  radius: 40,
+                  child: Icon(
+                    Icons.person,
+                    size: 30,
+                  ),
+                ),
+                SizedBox(
+                  height: height * .02,
+                ),
+                //info holding container
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.orange.shade100.withOpacity(.5),
+                    // color: Colors.indigo.withOpacity(.7),
+                  ),
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      //edit button
+                      Row(
+                        // crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Edit',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    letterSpacing: 2,
+                                    decoration: TextDecoration.underline),
+                              )),
+                          const Icon(Icons.edit_outlined)
+                        ],
+                      ),
+                      //name
+                      CustomCaintainer(
+                        displayIcon: Icons.person_4_outlined,
+                        color: Colors.transparent,
+
+                        // color: Colors.orangeAccent.shade200.withOpacity(.4),
+                        width: width * 1,
+                        textcolor: Colors.black,
+                        textsize: 20,
+                        // height: height * .05,
+                        title: 'Zain',
+                      ),
+                      SizedBox(
+                        height: height * .01,
+                      ),
+                      //email
+                      CustomCaintainer(
+                        displayIcon: Icons.email_outlined,
+                        color: Colors.transparent,
+
+                        // color: Colors.orangeAccent.shade200.withOpacity(.4),
+                        width: width * 1,
+                        textcolor: Colors.black,
+                        textsize: 20,
+                        // height: height * .05,
+                        title: 'M.zain_rehman@gmail.com',
+                      ),
+                      //profession
+                      SizedBox(
+                        height: height * .01,
+                      ),
+                      //profession
+                      CustomCaintainer(
+                        displayIcon: Icons.add_chart,
+                        color: Colors.transparent,
+                        // color: Colors.orangeAccent.shade200.withOpacity(.4),
+                        width: width * 1,
+                        textcolor: Colors.black,
+                        textsize: 20,
+                        // height: height * .05,
+                        title: 'Profession: Software-Engineer',
+                      ),
+                      //location
+                      SizedBox(
+                        height: height * .01,
+                      ),
+                      //location
+                      CustomCaintainer(
+                        displayIcon: Icons.person_pin_circle_outlined,
+                        color: Colors.transparent,
+                        // color: Colors.orangeAccent.shade200.withOpacity(.4),
+                        width: width * 1,
+                        textcolor: Colors.black,
+                        textsize: 20,
+                        // height: height * .05,
+                        title: 'Karachi,Pakistan',
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: height * .02,
+                ),
+
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.orange.shade100.withOpacity(.5),
+                    // color: Colors.indigo.withOpacity(.7),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        // crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Edit',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    letterSpacing: 2,
+                                    decoration: TextDecoration.underline),
+                              )),
+                          const Icon(Icons.edit_outlined)
+                        ],
+                      ),
+                      const CustomCaintainer(
+                          displayIcon: Icons.workspace_premium_sharp,
+                          textcolor: Colors.black,
+                          textsize: 25,
+                          title: 'Your Projects'),
+                      SizedBox(
+                        height: height * .02,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 50,
+                              child: Icon(
+                                Icons.picture_as_pdf_outlined,
+                                size: 60,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }

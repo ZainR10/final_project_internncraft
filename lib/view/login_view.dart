@@ -47,12 +47,15 @@ class _LoginViewState extends State<LoginView> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(
+                height: height * .02,
+              ),
               const Text(
-                'Welcome Back',
+                'Welcome Back :)',
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
               ),
               SizedBox(
-                height: height * .03,
+                height: height * .02,
               ),
               Padding(
                 padding: const EdgeInsets.all(10),

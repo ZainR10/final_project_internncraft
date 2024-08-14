@@ -27,32 +27,30 @@ class Routes {
           );
         }
       case RoutesName.userProfileView:
-        {
-          final args = settings.arguments as Map<String, String>;
-          final name = args['name'] ?? '';
-          final email = args['email'] ?? '';
-          final photoUrl = args['photoUrl'] ?? '';
-          return MaterialPageRoute(
-            builder: (BuildContext context) => UserProfileView(
-              name: name,
-              email: email,
-              photoUrl: photoUrl,
-            ),
-          );
-        }
-
-      default:
-        return _errorRoute();
+        // {
+        //   final args = settings.arguments as Map<String, String>;
+        //   final name = args['name'] ?? '';
+        //   final email = args['email'] ?? '';
+        //   final photoUrl = args['photoUrl'] ?? '';
+        return MaterialPageRoute(
+          builder: (BuildContext context) => const UserProfileView(
+              // name: name,
+              // email: email,
+              // photoUrl: photoUrl,
+              ),
+        );
     }
-  }
 
-  static Route<dynamic> _errorRoute() {
-    return MaterialPageRoute(builder: (_) {
-      return const Scaffold(
-        body: Center(
-          child: Text('No Routes Defined'),
-        ),
-      );
-    });
+    return _errorRoute();
   }
+}
+
+Route<dynamic> _errorRoute() {
+  return MaterialPageRoute(builder: (_) {
+    return const Scaffold(
+      body: Center(
+        child: Text('No Routes Defined'),
+      ),
+    );
+  });
 }

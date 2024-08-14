@@ -36,6 +36,9 @@ class _SignUpViewState extends State<SignUpView> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(
+              height: height * .02,
+            ),
             const Text(
               'Create Account',
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
@@ -44,7 +47,7 @@ class _SignUpViewState extends State<SignUpView> {
               height: height * .03,
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 children: [
                   Form(
