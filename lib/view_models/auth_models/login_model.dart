@@ -26,7 +26,7 @@ class LoginViewModel with ChangeNotifier {
         .then((value) {
       setloginLoading(false);
       GeneralUtils.snackBar(value.user!.email.toString(), context);
-      Navigator.pushNamed(context, RoutesName.homeView);
+      Navigator.pushNamed(context, RoutesName.userProfileView);
     }).catchError((error) {
       setloginLoading(false);
       GeneralUtils.snackBar(error.toString(), context);

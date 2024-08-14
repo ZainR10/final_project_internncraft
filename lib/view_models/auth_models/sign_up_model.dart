@@ -25,7 +25,7 @@ class SignUpViewModel with ChangeNotifier {
         .then((_) {
       setSignUpLoading(false);
       GeneralUtils.snackBar('Account Created', context);
-      Navigator.pushNamed(context, RoutesName.homeView);
+      Navigator.pushNamed(context, RoutesName.userProfileView);
     }).catchError((error) {
       setSignUpLoading(false);
       GeneralUtils.snackBar(error.toString(), context);

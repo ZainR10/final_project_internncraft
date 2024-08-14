@@ -11,7 +11,7 @@ class SplashViewLogic {
 
     if (user != null) {
       Timer(const Duration(seconds: 3), () {
-        Navigator.pushNamed(context, RoutesName.homeView);
+        Navigator.pushNamed(context, RoutesName.userProfileView);
       });
     } else {
       Timer(const Duration(seconds: 3), () {

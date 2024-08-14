@@ -2,9 +2,11 @@ import 'package:final_project_internncraft/res/components/divider_row.dart';
 import 'package:final_project_internncraft/res/components/simple_button.dart';
 import 'package:final_project_internncraft/utils/general_utils.dart';
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
+import 'package:final_project_internncraft/view_models/auth_models/goolge_sign_up.dart';
 import 'package:final_project_internncraft/view_models/auth_models/login_model.dart';
 import 'package:final_project_internncraft/view_models/auth_models/validation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:provider/provider.dart';
 
@@ -143,7 +145,26 @@ class _LoginViewState extends State<LoginView> {
                       ))
                 ],
               ),
-              const DividerRow()
+              const DividerRow(),
+              Consumer<AuthServiceModel>(builder: (context, value, child) {
+                return SimpleButton(
+                  buttonIcon: const FaIcon(
+                    FontAwesomeIcons.google,
+                    color: Colors.white,
+                    size: 25,
+                  ),
+                  height: height * .08,
+                  width: width * 1,
+                  textcolor: Colors.white,
+                  textsize: 20,
+                  title: 'Log in with google',
+                  buttoncolor: Colors.black,
+                  loading: value.isLoading,
+                  onPress: () {
+                    value.signInWithGoogle(context);
+                  },
+                );
+              })
             ]),
       ),
     ));

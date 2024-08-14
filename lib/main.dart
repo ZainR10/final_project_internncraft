@@ -1,6 +1,7 @@
 import 'package:final_project_internncraft/firebase_options.dart';
 import 'package:final_project_internncraft/utils/routes/routes.dart';
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
+import 'package:final_project_internncraft/view_models/auth_models/goolge_sign_up.dart';
 import 'package:final_project_internncraft/view_models/auth_models/login_model.dart';
 import 'package:final_project_internncraft/view_models/auth_models/sign_up_model.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(
             create: (_) => SignUpViewModel(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => AuthServiceModel(),
           ),
         ],
         child: const MaterialApp(

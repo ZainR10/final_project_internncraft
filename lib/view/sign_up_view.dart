@@ -135,23 +135,25 @@ class _SignUpViewState extends State<SignUpView> {
               ],
             ),
             const DividerRow(),
-            SimpleButton(
-              buttonIcon: const FaIcon(
-                FontAwesomeIcons.google,
-                color: Colors.white,
-                size: 25,
-              ),
-              height: height * .08,
-              width: width * 1,
-              textcolor: Colors.white,
-              textsize: 20,
-              title: 'Sign up with google',
-              buttoncolor: Colors.black,
-              onPress: () {
-                final googleSignUp = GoogleSignUp(context);
-                googleSignUp.signInWithGoogle();
-              },
-            )
+            Consumer<AuthServiceModel>(builder: (context, value, child) {
+              return SimpleButton(
+                buttonIcon: const FaIcon(
+                  FontAwesomeIcons.google,
+                  color: Colors.white,
+                  size: 25,
+                ),
+                height: height * .08,
+                width: width * 1,
+                textcolor: Colors.white,
+                textsize: 20,
+                title: 'Sign up with google',
+                buttoncolor: Colors.black,
+                loading: value.isLoading,
+                onPress: () {
+                  value.signInWithGoogle(context);
+                },
+              );
+            })
           ],
         ),
       ),

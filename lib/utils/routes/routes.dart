@@ -1,8 +1,8 @@
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
-import 'package:final_project_internncraft/view/home_view.dart';
 import 'package:final_project_internncraft/view/login_view.dart';
 import 'package:final_project_internncraft/view/sign_up_view.dart';
 import 'package:final_project_internncraft/view/splash_view.dart';
+import 'package:final_project_internncraft/view/user_profile_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {
@@ -26,10 +26,18 @@ class Routes {
             builder: (BuildContext context) => const SignUpView(),
           );
         }
-      case RoutesName.homeView:
+      case RoutesName.userProfileView:
         {
+          final args = settings.arguments as Map<String, String>;
+          final name = args['name'] ?? '';
+          final email = args['email'] ?? '';
+          final photoUrl = args['photoUrl'] ?? '';
           return MaterialPageRoute(
-            builder: (BuildContext context) => const HomeView(),
+            builder: (BuildContext context) => UserProfileView(
+              name: name,
+              email: email,
+              photoUrl: photoUrl,
+            ),
           );
         }
 

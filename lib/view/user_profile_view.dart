@@ -1,27 +1,34 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:final_project_internncraft/utils/general_utils.dart';
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+class UserProfileView extends StatefulWidget {
+  final String name;
+  final String email;
+  final String photoUrl;
+  const UserProfileView({
+    required this.name,
+    required this.email,
+    required this.photoUrl,
+    super.key,
+  });
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<UserProfileView> createState() => _UserProfileViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _UserProfileViewState extends State<UserProfileView> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
     final width = MediaQuery.of(context).size.width * 1;
     final auth = FirebaseAuth.instance;
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('home'),
+        title: const Text('Home'),
         actions: [
           InkWell(
             onTap: () {
@@ -37,6 +44,18 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
         ],
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Welcome, ${widget.name}!'),
+            Text(widget.email),
+            widget.photoUrl.isNotEmpty
+                ? Image.network(widget.photoUrl)
+                : const Icon(Icons.account_circle, size: 100),
+          ],
+        ),
       ),
     );
   }
