@@ -3,7 +3,6 @@ import 'package:final_project_internncraft/utils/general_utils.dart';
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class UserProfileView extends StatefulWidget {
   const UserProfileView({
@@ -71,23 +70,27 @@ class _UserProfileViewState extends State<UserProfileView> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       //edit button
-                      Row(
-                        // crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Edit',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    letterSpacing: 2,
-                                    decoration: TextDecoration.underline),
-                              )),
-                          const Icon(Icons.edit_outlined)
-                        ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RoutesName.enterDetailsView);
+                        },
+                        child: const Row(
+                          // crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Edit',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  letterSpacing: 2,
+                                  decoration: TextDecoration.underline),
+                            ),
+                            Icon(Icons.edit_outlined)
+                          ],
+                        ),
                       ),
                       //name
                       CustomCaintainer(
@@ -161,23 +164,27 @@ class _UserProfileViewState extends State<UserProfileView> {
                   ),
                   child: Column(
                     children: [
-                      Row(
-                        // crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Edit',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    letterSpacing: 2,
-                                    decoration: TextDecoration.underline),
-                              )),
-                          const Icon(Icons.edit_outlined)
-                        ],
+                      InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RoutesName.enterProjectsView);
+                        },
+                        child: const Row(
+                          // crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              'Edit',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  letterSpacing: 2,
+                                  decoration: TextDecoration.underline),
+                            ),
+                            Icon(Icons.edit_outlined)
+                          ],
+                        ),
                       ),
                       const CustomCaintainer(
                           displayIcon: Icons.workspace_premium_sharp,
@@ -187,7 +194,7 @@ class _UserProfileViewState extends State<UserProfileView> {
                       SizedBox(
                         height: height * .02,
                       ),
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.all(10),
                         child: Row(
                           children: [
