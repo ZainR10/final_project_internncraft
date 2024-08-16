@@ -129,14 +129,12 @@ class _EnterProjectsViewState extends State<EnterProjectsView> {
                           buttoncolor: Colors.black,
                           title: 'Save Project',
                           onPress: () {
-                            if (_formProjectsKey.currentState?.validate() ??
-                                false) {
-                              final result = {
+                            if (_formProjectsKey.currentState!.validate()) {
+                              Navigator.pop(context, {
                                 'description': descriptionController.text,
                                 'link': githubController.text,
                                 'image': _selectedImage,
-                              };
-                              Navigator.pop(context, result);
+                              });
                             }
                           },
                         ),
