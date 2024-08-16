@@ -5,7 +5,7 @@ class CustomCaintainer extends StatelessWidget {
   final double? height;
   final Color? textcolor;
   final double textsize;
-  final IconData displayIcon;
+  final IconData? displayIcon;
   final double? width;
   final String title;
   // final VoidCallback onPress;
@@ -13,7 +13,7 @@ class CustomCaintainer extends StatelessWidget {
   final Color? color;
   const CustomCaintainer(
       {this.width,
-      required this.displayIcon,
+      this.displayIcon,
       required this.textcolor,
       required this.textsize,
       this.color,
@@ -27,6 +27,7 @@ class CustomCaintainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width * 1;
     return Container(
+      padding: EdgeInsets.all(2),
       height: height,
       width: width,
       // margin: const EdgeInsets.all(15),
@@ -35,27 +36,24 @@ class CustomCaintainer extends StatelessWidget {
         color: color,
         // color: Colors.indigo.withOpacity(.7),
       ),
-      child: Padding(
-        padding: EdgeInsets.all(10),
-        child: Row(
-          children: [
-            Icon(
-              displayIcon,
-              size: 35,
-            ),
-            SizedBox(
-              width: width * .01,
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: textcolor,
-                  fontSize: textsize,
-                  letterSpacing: 1.5),
-            ),
-          ],
-        ),
+      child: Row(
+        children: [
+          Icon(
+            displayIcon,
+            size: 25,
+          ),
+          SizedBox(
+            width: width * .01,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+                fontWeight: FontWeight.normal,
+                color: textcolor,
+                fontSize: textsize,
+                letterSpacing: 1),
+          ),
+        ],
       ),
     );
   }
