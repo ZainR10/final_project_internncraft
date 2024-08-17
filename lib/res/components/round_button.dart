@@ -32,6 +32,10 @@ class CustomCaintainer extends StatelessWidget {
       width: width,
       // margin: const EdgeInsets.all(15),
       decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey.shade400,
+          width: 2,
+        ),
         borderRadius: BorderRadius.circular(10),
         color: color,
         // color: Colors.indigo.withOpacity(.7),

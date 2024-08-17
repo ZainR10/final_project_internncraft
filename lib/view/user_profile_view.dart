@@ -1,4 +1,3 @@
-import 'package:final_project_internncraft/res/components/else_container.dart';
 import 'package:final_project_internncraft/res/components/image_container.dart';
 import 'package:final_project_internncraft/res/components/listview_projects.dart';
 import 'package:final_project_internncraft/res/components/round_button.dart';
@@ -20,18 +19,12 @@ class UserProfileView extends StatefulWidget {
 class _UserProfileViewState extends State<UserProfileView> {
   List<Map<String, dynamic>> projects = [];
   final List<Map<String, dynamic>> skills = [];
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     final auth = FirebaseAuth.instance;
     final userDetails = Provider.of<UserDetails>(context);
-
-    bool hasDetails = userDetails.name.isNotEmpty ||
-        userDetails.email.isNotEmpty ||
-        userDetails.profession.isNotEmpty ||
-        userDetails.location.isNotEmpty;
 
     return Scaffold(
       appBar: AppBar(
@@ -54,228 +47,313 @@ class _UserProfileViewState extends State<UserProfileView> {
           ),
         ],
       ),
-      body: hasDetails
-          ? Padding(
-              padding: const EdgeInsets.all(10),
-              child: SingleChildScrollView(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        // crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          const ImageContainer(),
-                          SizedBox(width: width * .02),
-                          Expanded(
-                            child: Text(
-                              // 'Zain Patni',
-                              ' ${userDetails.name}',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
-                                  fontSize: 26,
-                                  letterSpacing: 1),
-                            ),
+      drawer: Drawer(
+        child: ListView(
+          padding: const EdgeInsets.all(0),
+          children: [
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('My Profile'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.book),
+              title: const Text('My Course'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.workspace_premium),
+              title: const Text('Go Premium'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.video_label),
+              title: const Text('Saved Videos'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Edit Profile'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('LogOut'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildUserDetailsSection(context, userDetails, width, height),
+              const Divider(color: Colors.black, height: 20, thickness: 2),
+              _buildSkillsSection(context, width, height),
+              const Divider(color: Colors.black, height: 20, thickness: 2),
+              _buildProjectsSection(context, width, height),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildUserDetailsSection(BuildContext context, UserDetails userDetails,
+      double width, double height) {
+    ///personel details section
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const ImageContainer(),
+        SizedBox(height: height * .02),
+        userDetails.name.isNotEmpty ||
+                userDetails.email.isNotEmpty ||
+                userDetails.profession.isNotEmpty ||
+                userDetails.location.isNotEmpty
+
+            ///personel details section
+
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutesName.enterDetailsView);
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Edit',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontSize: 16,
+                            letterSpacing: 2,
+                            decoration: TextDecoration.underline,
                           ),
-                        ],
-                      ),
-
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          // color: Colors.orange.shade100.withOpacity(.5)
                         ),
-                        // color: Colors.transparent),
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, RoutesName.enterDetailsView);
-                              },
-                              child: const Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Edit',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      letterSpacing: 2,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                  Icon(Icons.edit_outlined),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: height * .01),
-                            CustomCaintainer(
-                                displayIcon: Icons.email_outlined,
-                                color: Colors.orange.shade100.withOpacity(.5),
-                                width: width * 1,
-                                textcolor: Colors.black,
-                                textsize: 17,
-                                title: ' ${userDetails.email}'),
-                            SizedBox(height: height * .01),
-                            CustomCaintainer(
-                              displayIcon: Icons.add_chart,
-                              color: Colors.orange.shade100.withOpacity(.5),
-                              width: width * 1,
-                              textcolor: Colors.black,
-                              textsize: 17,
-                              title: ' ${userDetails.profession}',
-                            ),
-                            SizedBox(height: height * .01),
-                            CustomCaintainer(
-                                displayIcon: Icons.person_pin_circle_outlined,
-                                color: Colors.orange.shade100.withOpacity(.5),
-                                width: width * 1,
-                                textcolor: Colors.black,
-                                textsize: 17,
-                                title: ' ${userDetails.location}'),
-                          ],
-                        ),
-                      ),
-                      const Divider(
+                        Icon(Icons.edit_outlined),
+                      ],
+                    ),
+                  ),
+                  CustomCaintainer(
+                    displayIcon: Icons.person_3_outlined,
+                    color: Colors.orange.shade100.withOpacity(.5),
+                    width: width * 1,
+                    textcolor: Colors.black,
+                    textsize: 17,
+                    title: ' ${userDetails.name}',
+                  ),
+                  SizedBox(height: height * .01),
+                  CustomCaintainer(
+                    displayIcon: Icons.email_outlined,
+                    color: Colors.orange.shade100.withOpacity(.5),
+                    width: width * 1,
+                    textcolor: Colors.black,
+                    textsize: 17,
+                    title: ' ${userDetails.email}',
+                  ),
+                  SizedBox(height: height * .01),
+                  CustomCaintainer(
+                    displayIcon: Icons.add_chart,
+                    color: Colors.orange.shade100.withOpacity(.5),
+                    width: width * 1,
+                    textcolor: Colors.black,
+                    textsize: 17,
+                    title: ' ${userDetails.profession}',
+                  ),
+                  SizedBox(height: height * .01),
+                  CustomCaintainer(
+                    displayIcon: Icons.person_pin_circle_outlined,
+                    color: Colors.orange.shade100.withOpacity(.5),
+                    width: width * 1,
+                    textcolor: Colors.black,
+                    textsize: 17,
+                    title: ' ${userDetails.location}',
+                  ),
+                ],
+              )
+            : Center(
+                child: Column(
+                  children: [
+                    const Text(
+                      'Please add your details',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                         color: Colors.black,
-                        height: 9,
-                        thickness: 2,
+                        fontSize: 22,
+                        letterSpacing: 1,
                       ),
-                      // SizedBox(height: height * .01),
-                      //info container
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  final result = await Navigator.pushNamed(
-                                      context, RoutesName.skillsView);
-                                  if (result != null &&
-                                      result is Map<String, dynamic>) {
-                                    setState(() {
-                                      skills.add(result);
-                                    });
-                                  }
-                                },
-
-                                //SKILLS SECTION********
-                                child: const Row(
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  // mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Edit',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                        fontSize: 16,
-                                        letterSpacing: 2,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                    ),
-                                    Icon(Icons.edit_outlined),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: height * .01),
-
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  // color: Colors.orange.shade100.withOpacity(.5)
-                                ),
-                                child: CustomCaintainer(
-                                  color: Colors.orange.shade100.withOpacity(.5),
-                                  displayIcon: Icons.stars,
-                                  textcolor: Colors.black,
-                                  textsize: 25,
-                                  title: 'Skills',
-                                ),
-                              ),
-                              SizedBox(height: height * .01),
-
-                              SkillsListview(skills: skills),
-
-                              SizedBox(height: height * .01),
-                              const Divider(
-                                color: Colors.black,
-                                height: 9,
-                                thickness: 2,
-                              ),
-                              //PROJECTS SECTION********
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  // color: Colors.orange.shade100.withOpacity(.5),
-                                ),
-                                padding: const EdgeInsets.all(10),
-                                child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      InkWell(
-                                        onTap: () async {
-                                          final result =
-                                              await Navigator.pushNamed(
-                                            context,
-                                            RoutesName.enterProjectsView,
-                                          );
-                                          if (result != null && mounted) {
-                                            setState(() {
-                                              projects.add(result
-                                                  as Map<String, dynamic>);
-                                            });
-                                          }
-                                        },
-                                        child: const Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Edit',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black,
-                                                fontSize: 16,
-                                                letterSpacing: 2,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
-                                            ),
-                                            Icon(Icons.edit_outlined),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(height: height * .01),
-                                      CustomCaintainer(
-                                        width: width * 1,
-                                        color: Colors.orange.shade100
-                                            .withOpacity(.5),
-                                        displayIcon:
-                                            Icons.workspace_premium_sharp,
-                                        textcolor: Colors.black,
-                                        textsize: 25,
-                                        title: 'Your Projects',
-                                      ),
-                                      SizedBox(height: height * .02),
-                                      ProjectsListView(projects: projects)
-                                    ]),
-                              ),
-                            ]),
-                      ),
-                    ]),
+                    ),
+                    SizedBox(height: height * .02),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, RoutesName.enterDetailsView);
+                      },
+                      child: const Text('Add Personal Info'),
+                    ),
+                  ],
+                ),
               ),
-            )
-          : const ElseContainer(),
+      ],
+    );
+  }
+
+  ///Skills section
+  Widget _buildSkillsSection(
+      BuildContext context, double width, double height) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            InkWell(
+              onTap: () async {
+                final result =
+                    await Navigator.pushNamed(context, RoutesName.skillsView);
+                if (result != null && result is Map<String, dynamic>) {
+                  setState(() {
+                    skills.add(result);
+                  });
+                }
+              },
+              child: const Row(
+                children: [
+                  Text(
+                    'Edit',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16,
+                      letterSpacing: 2,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  Icon(Icons.edit_outlined),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: height * .01),
+        skills.isNotEmpty
+            ? SkillsListview(skills: skills)
+            : Center(
+                child: Column(
+                  children: [
+                    const Text(
+                      'No skills added yet',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 22,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    SizedBox(height: height * .02),
+                    TextButton(
+                        onPressed: () async {
+                          final result = await Navigator.pushNamed(
+                              context, RoutesName.skillsView);
+                          if (result != null &&
+                              result is Map<String, dynamic>) {
+                            setState(() {
+                              skills.add(result);
+                            });
+                          }
+                        },
+                        child: const Text('Add Skills')),
+                  ],
+                ),
+              ),
+      ],
+    );
+  }
+
+  Widget _buildProjectsSection(
+      BuildContext context, double width, double height) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            InkWell(
+              onTap: () async {
+                final result = await Navigator.pushNamed(
+                    context, RoutesName.enterProjectsView);
+                if (result != null && mounted) {
+                  setState(() {
+                    projects.add(result as Map<String, dynamic>);
+                  });
+                }
+              },
+              child: const Row(
+                children: [
+                  Text(
+                    'Edit',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16,
+                      letterSpacing: 2,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  Icon(Icons.edit_outlined),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: height * .01),
+        projects.isNotEmpty
+            ? ProjectsListView(projects: projects)
+            : Center(
+                child: Column(
+                  children: [
+                    const Text(
+                      'No projects added yet',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 22,
+                        letterSpacing: 1,
+                      ),
+                    ),
+                    SizedBox(height: height * .02),
+                    TextButton(
+                        onPressed: () async {
+                          final result = await Navigator.pushNamed(
+                              context, RoutesName.enterProjectsView);
+                          if (result != null && mounted) {
+                            setState(() {
+                              projects.add(result as Map<String, dynamic>);
+                            });
+                          }
+                        },
+                        child: Text('Add Projects')),
+                  ],
+                ),
+              ),
+      ],
     );
   }
 }
