@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           // theme: appThemeData,
           debugShowCheckedModeBanner: false,
-          initialRoute: RoutesName.userProfileView,
+          initialRoute: RoutesName.splashView,
           onGenerateRoute: Routes.generateRoute,
           // home: const SplashView(),
         ));

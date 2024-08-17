@@ -1,6 +1,8 @@
 import 'package:final_project_internncraft/utils/routes/routes_name.dart';
 import 'package:final_project_internncraft/view/enter_details_view.dart';
 import 'package:final_project_internncraft/view/enter_projects_view.dart';
+import 'package:final_project_internncraft/view/home_view.dart';
+import 'package:final_project_internncraft/view/jobs_view.dart';
 import 'package:final_project_internncraft/view/login_view.dart';
 import 'package:final_project_internncraft/view/sign_up_view.dart';
 import 'package:final_project_internncraft/view/skills_view.dart';
@@ -15,6 +17,18 @@ class Routes {
         {
           return MaterialPageRoute(
             builder: (BuildContext context) => const SplashView(),
+          );
+        }
+      case RoutesName.homeView:
+        {
+          return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeView(),
+          );
+        }
+      case RoutesName.jobsView:
+        {
+          return MaterialPageRoute(
+            builder: (BuildContext context) => const JobsView(),
           );
         }
       case RoutesName.skillsView:

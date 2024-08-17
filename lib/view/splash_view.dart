@@ -25,10 +25,10 @@ class _SplashViewState extends State<SplashView> {
       backgroundColor: Colors.indigoAccent,
       body: Center(
         child: Text(
-          'Language Learning App',
+          'DigiCraft',
           style: GoogleFonts.lobster(
             textStyle: const TextStyle(
-                color: Colors.white, fontSize: 35, letterSpacing: .5),
+                color: Colors.white, fontSize: 35, letterSpacing: 2),
           ),
         ),
       ),

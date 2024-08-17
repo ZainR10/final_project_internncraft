@@ -1,3 +1,6 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:final_project_internncraft/res/components/drawer_component.dart';
 import 'package:final_project_internncraft/res/components/image_container.dart';
 import 'package:final_project_internncraft/res/components/listview_projects.dart';
 import 'package:final_project_internncraft/res/components/round_button.dart';
@@ -27,74 +30,16 @@ class _UserProfileViewState extends State<UserProfileView> {
     final userDetails = Provider.of<UserDetails>(context);
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Profile'),
-        backgroundColor: Colors.amber,
-        actions: [
-          InkWell(
-            onTap: () {
-              auth.signOut().then((_) {
-                Navigator.pushNamed(context, RoutesName.loginView);
-              }).catchError((error) {
-                GeneralUtils.snackBar(error.toString(), context);
-              });
-            },
-            child: const Icon(
-              Icons.logout,
-              size: 40,
-            ),
-          ),
-        ],
-      ),
       drawer: Drawer(
-        child: ListView(
-          padding: const EdgeInsets.all(0),
-          children: [
-            ListTile(
-              leading: const Icon(Icons.person),
-              title: const Text('My Profile'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text('My Course'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.workspace_premium),
-              title: const Text('Go Premium'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.video_label),
-              title: const Text('Saved Videos'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.edit),
-              title: const Text('Edit Profile'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('LogOut'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          width: width * .60,
+          surfaceTintColor: Colors.orange.shade100.withOpacity(.5),
+          backgroundColor: Colors.orange.shade100,
+          child: const DrawerComponent()),
+      appBar: AppBar(
+        centerTitle: true,
+        // automaticallyImplyLeading: false,
+        title: const Text('Profile'),
+        backgroundColor: Colors.orange.withOpacity(.8),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -349,7 +294,7 @@ class _UserProfileViewState extends State<UserProfileView> {
                             });
                           }
                         },
-                        child: Text('Add Projects')),
+                        child: const Text('Add Projects')),
                   ],
                 ),
               ),

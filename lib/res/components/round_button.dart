@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomCaintainer extends StatelessWidget {
   final double? height;
@@ -27,7 +26,7 @@ class CustomCaintainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width * 1;
     return Container(
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       height: height,
       width: width,
       // margin: const EdgeInsets.all(15),
