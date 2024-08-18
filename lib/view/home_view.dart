@@ -187,7 +187,8 @@ class _HomeViewState extends State<HomeView> {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
-                  height: height * .50,
+                  height: height * .40,
+                  // width: width * 1,
                   margin: const EdgeInsets.all(6.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
