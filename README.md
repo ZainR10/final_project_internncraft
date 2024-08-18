@@ -1,16 +1,7 @@
-# final_project_internncraft
+![home intro](https://github.com/user-attachments/assets/a74486aa-5184-4686-9feb-c0b344ac8c7c),
 
-A new Flutter project.
+![home second](https://github.com/user-attachments/assets/8667430c-b561-4c3b-93c3-e2ee58b3eebb),
 
-## Getting Started
+![jobs screen](https://github.com/user-attachments/assets/93f47a49-5839-45f9-9d4b-ff3351d0d34d),
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![profile screen](https://github.com/user-attachments/assets/25ef97d4-7cab-40a0-a83f-56164c13a933),
