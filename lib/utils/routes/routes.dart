@@ -2,6 +2,7 @@ import 'package:final_project_internncraft/utils/routes/routes_name.dart';
 import 'package:final_project_internncraft/view/enter_details_view.dart';
 import 'package:final_project_internncraft/view/enter_projects_view.dart';
 import 'package:final_project_internncraft/view/home_view.dart';
+import 'package:final_project_internncraft/view/job_desc_view.dart';
 import 'package:final_project_internncraft/view/jobs_view.dart';
 import 'package:final_project_internncraft/view/login_view.dart';
 import 'package:final_project_internncraft/view/sign_up_view.dart';
@@ -17,6 +18,17 @@ class Routes {
         {
           return MaterialPageRoute(
             builder: (BuildContext context) => const SplashView(),
+          );
+        }
+      case RoutesName.jobDescView:
+        // Retrieve arguments passed to NewsDetail screen
+        final args = settings.arguments;
+        if (args is JobDescArguments) {
+          return MaterialPageRoute(
+            builder: (context) => JobDescView(
+              jobRole: args.jobRole,
+              jobDesc: args.jobDesc,
+            ),
           );
         }
       case RoutesName.homeView:
@@ -87,5 +99,15 @@ Route<dynamic> _errorRoute() {
         child: Text('No Routes Defined'),
       ),
     );
+  });
+}
+
+class JobDescArguments {
+  final String jobRole;
+  final String jobDesc;
+
+  JobDescArguments({
+    required this.jobDesc,
+    required this.jobRole,
   });
 }
